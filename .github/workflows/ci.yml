@@ -1,0 +1,25 @@
+name: client CI
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v3
+
+      - name: 의존성 설치
+        run: npm install
+
+      - name: 스타일 검사
+        run: npm run lint
+
+      - name: 테스트
+        run: npm run test
+
+      - name: 빌드드
+        run: npm run build
